@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Plus from '../components/plus.component';
 import Minus from '../components/minus.component';
+import CountReset from '../components/countReset.component';
 import { useRecoilValue } from 'recoil';
 import { count } from '../recoil/count.recoil';
 
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div><Minus /><h1>{value}</h1><Plus /></div>
+        <div><Minus /><h1>{value}</h1><Plus /><br/><CountReset/></div>
       </main>
 
       <footer className={styles.footer}>
