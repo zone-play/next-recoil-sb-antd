@@ -1,34 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 一、创建 Next.js app
 
-## Getting Started
+```base
+yarn create next-app --typescript
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 二、安装 Recoil
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```base
+yarn add recoil
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 三、安装 Storybook
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```base
+npx sb init
 
-## Learn More
+yarn storybook
+```
 
-To learn more about Next.js, take a look at the following resources:
+> `.storybook/preview.js` 为 Storybook 配置 Next.js Images
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```base
++ import * as NextImage from "next/image";
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
++ const OriginalNextImage = NextImage.default;
 
-## Deploy on Vercel
++ Object.defineProperty(NextImage, "default", {
+  configurable: true,
+  value: (props) => (
+    <OriginalNextImage
+      {...props}
+      unoptimized
+    />
+  ),
+});
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> `package.json` 为 Storybook 提供公共目录
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```base
+{
+  ...
+  
+  "scripts": {
+    - "storybook": "start-storybook -p 6006",
+    - "build-storybook": "build-storybook"
+    + "storybook": "start-storybook -p 6006 -s ./public",
+    + "build-storybook": "build-storybook -s public"
+  },
+  
+ ...
+
+}
+```
+
+## 四、安装 antd
+
+```base
+yarn add antd
+```
+
+> `.storybook/preview.js` 为 Storybook 配置全局样式
+
+```base
+import 'antd/dist/antd.css';
+```
+
