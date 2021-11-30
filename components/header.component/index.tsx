@@ -1,11 +1,17 @@
 import { Media } from '../../media';
 import { HeaderDeskComponent } from './header.desk';
 
-export const HeaderComponent = () => {
+interface props {
+    logoAlt?: string;
+    logoWidth?: number;
+    logoHeight?: number;
+}
+
+export const HeaderComponent = ({ logoAlt, logoWidth, logoHeight }: props) => {
     return (
         <>
             <Media greaterThanOrEqual="lg">
-                <HeaderDeskComponent />
+                <HeaderDeskComponent logoAlt={logoAlt} logoWidth={logoWidth} logoHeight={logoHeight} />
             </Media>
         </>
     )
