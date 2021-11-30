@@ -30,7 +30,7 @@ const changeCount = selectorFamily({
                 break;
             default: set(
                 count,
-                newValue instanceof DefaultValue ? newValue : newValue
+                newValue
             );
         };
     }
