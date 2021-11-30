@@ -1,13 +1,7 @@
-import { useRecoilState } from 'recoil';
-import { changeCount } from '../recoil/count.recoil';
-
-export default function () {
-
-    const [minusCount, setMinusCount] = useRecoilState(changeCount('-'));
-    const minusFunc = () => setMinusCount(minusCount);
+export default function (props: any) {
 
     return (
-        <button onClick={minusFunc}>-</button>
+        <button onClick={props.minusFunc}>-</button>
     )
 
 }

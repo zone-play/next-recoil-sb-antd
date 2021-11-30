@@ -5,12 +5,17 @@ import styles from '../styles/Home.module.css'
 import Plus from '../components/plus.component';
 import Minus from '../components/minus.component';
 import CountReset from '../components/countReset.component';
-import { useRecoilValue } from 'recoil';
-import { count } from '../recoil/count.recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { changeCount, count } from '../recoil/count.recoil';
 
 const Home: NextPage = () => {
 
-  const value = useRecoilValue(count)
+  const value = useRecoilValue(count);
+  const [plusCount, setPlusCount] = useRecoilState(changeCount('+'));
+  const plusFunc = () => setPlusCount(plusCount);
+  const [minusCount, setMinusCount] = useRecoilState(changeCount('-'));
+  const minusFunc = () => setMinusCount(minusCount);
+  const resetFunc = useResetRecoilState(changeCount(''));
 
   return (
     <div className={styles.container}>
@@ -21,7 +26,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div><Minus /><h1>{value}</h1><Plus /><br/><CountReset/></div>
+        <div><Minus minusFunc={minusFunc} /><h1>{value}</h1><Plus plusFunc={plusFunc} /><br /><CountReset resetFunc={resetFunc} /></div>
       </main>
 
       <footer className={styles.footer}>

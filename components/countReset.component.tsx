@@ -1,11 +1,6 @@
-import { useResetRecoilState } from 'recoil';
-import { changeCount } from '../recoil/count.recoil';
-
-export default function () {
-
-    const reset = useResetRecoilState(changeCount(''))
+export default function (props: any) {
 
     return (
-        <button onClick={reset}>reset</button>
+        <button onClick={props.resetFunc}>reset</button>
     )
 }
