@@ -1,9 +1,9 @@
 import { useResetRecoilState } from 'recoil';
-import { count } from '../recoil/count.recoil';
+import { changeCount } from '../recoil/count.recoil';
 
 export default function () {
 
-    const reset = useResetRecoilState(count)
+    const reset = useResetRecoilState(changeCount(''))
 
     return (
         <button onClick={reset}>reset</button>
